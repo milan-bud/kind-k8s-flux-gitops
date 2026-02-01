@@ -4,6 +4,4 @@ kind: Kustomization
 resources:
   - sources.yaml
   - prometheus-stack.yaml
-  - loki.yaml
-  - alloy.yaml
   - grafana-secret.yaml
