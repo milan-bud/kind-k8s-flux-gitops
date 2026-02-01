@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - vault.yaml
   - external-secrets.yaml
-  - vault-bridge.yaml
   - monitoring/
