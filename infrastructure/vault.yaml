@@ -16,6 +16,4 @@ spec:
     server:
       dev:
         enabled: true
-      # enable a PostStart hook to auto-configure Kubernetes auth
-      postStart:
-        - [/bin/sh, -c, "sleep 5 && vault auth enable kubernetes"]
+        devRootToken: "root"
