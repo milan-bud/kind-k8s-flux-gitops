@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1beta1
+kind: ClusterSecretStore
+metadata:
+  name: vault-backend
+spec:
+  provider:
+    vault:
+      server: "http://vault.flux-system.svc.cluster.local:8200"
+      path: "secret"
+      version: "v2"
+      auth:
+        # No tokens in Git, use the identity of the ESO Pod
+        kubernetes:
+          mountPath: "kubernetes"
+          role: "webapp-role"
+          serviceAccountRef:
+            name: "external-secrets"
+            namespace: "flux-system"

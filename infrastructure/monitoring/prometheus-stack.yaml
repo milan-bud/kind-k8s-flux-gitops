@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kube-prometheus-stack
-  namespace: flux-system # keeping inside flux ns
+  namespace: flux-system
 spec:
   interval: 1h
   chart:
@@ -15,9 +15,15 @@ spec:
         namespace: flux-system
   install:
     crds: CreateReplace
+  # pull a secret, created by ESO
+  valuesFrom:
+    - kind: Secret
+      name: grafana-admin-credentials
+      valuesKey: admin-password
+      targetPath: grafana.adminPassword
   values:
     grafana:
-      adminPassword: "admin" 
+      enabled: true
     prometheus:
       prometheusSpec:
         podMonitorSelectorNilUsesHelmValues: false
