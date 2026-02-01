@@ -22,6 +22,10 @@ spec:
         type: 'filesystem'
     singleBinary:
       replicas: 1
+    test:
+      enabled: false
+    lokiCanary:
+      enabled: false
     monitoring:
       dashboards:
         enabled: false
