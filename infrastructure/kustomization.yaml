@@ -5,5 +5,5 @@ resources:
   - sources.yaml
   - vault.yaml
   - vault-bridge.yaml
-  - external-secrets.yaml
+  - grafana-secret.yaml
   - monitoring/
