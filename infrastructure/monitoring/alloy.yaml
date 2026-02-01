@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: flux-system
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: alloy
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+    alloy:
+      configReloader:
+        enabled: true
+      config: |
+        logging {
+          level = "info"
+          format = "logfmt"
+        }
+
+        discovery.kubernetes "pod_logs" {
+          role = "pod"
+        }
+
+        loki.write "local_loki" {
+          endpoint {
+            url = "http://loki.flux-system.svc.cluster.local:3100/loki/api/v1/push"
+          }
+        }
+
+        loki.source.kubernetes "pod_logs" {
+          targets    = discovery.kubernetes.pod_logs.targets
+          forward_to = [loki.write.local_loki.receiver]
+        }
