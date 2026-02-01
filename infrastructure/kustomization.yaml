@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - sources.yaml
   - vault.yaml
+  - external-secrets.yaml
   - vault-bridge.yaml
-  - grafana-secret.yaml
   - monitoring/
