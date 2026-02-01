@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: webapp-view-binding
+  namespace: test # Overridden by overlays
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view # Built-in K8s role
+subjects:
+- kind: ServiceAccount
+  name: webapp-sa
+  namespace: test
