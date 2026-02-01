@@ -15,13 +15,24 @@ spec:
         namespace: flux-system
   install:
     crds: CreateReplace
+  
   # pull a secret, created by ESO
   valuesFrom:
     - kind: Secret
       name: grafana-admin-credentials
       valuesKey: admin-password
       targetPath: grafana.adminPassword
+      
   values:
+    # disable blocking Webhooks ---
+    prometheusOperator:
+      admissionWebhooks:
+        enabled: false
+        patch:
+          enabled: false
+      tls:
+        enabled: false
+
     grafana:
       enabled: true
     prometheus:
