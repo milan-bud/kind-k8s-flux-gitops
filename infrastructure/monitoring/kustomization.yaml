@@ -7,3 +7,4 @@ resources:
   - grafana-secret.yaml
   - loki.yaml
   - alloy.yaml
+  - metrics-server.yaml
