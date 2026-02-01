@@ -15,6 +15,12 @@ spec:
         namespace: flux-system
   install:
     crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: true # automatic Rollback
   
   # pull a secret, created by ESO
   valuesFrom:
@@ -23,14 +29,6 @@ spec:
       valuesKey: admin-password
       targetPath: grafana.adminPassword
 
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    remediation:
-      retries: 3
-      remediateLastFailure: true # automatic Rollback
-      
   values:
     # disable blocking Webhooks ---
     prometheusOperator:
