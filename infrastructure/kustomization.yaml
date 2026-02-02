@@ -3,6 +3,4 @@ kind: Kustomization
 
 resources:
   - sources.yaml
-  - vault.yaml
-  - vault-bridge.yaml
   - monitoring/

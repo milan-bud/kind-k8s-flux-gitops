@@ -9,6 +9,7 @@ spec:
   path: ./infrastructure/operator 
   prune: true
   wait: true
+  timeout: 5m 
   sourceRef:
     kind: GitRepository
     name: flux-system
