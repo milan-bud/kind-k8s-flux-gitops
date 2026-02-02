@@ -149,7 +149,7 @@ Cause: Standard Nginx images attempt to write to root-owned directories (/var/ca
 
 Resolution: Switched the container image to nginxinc/nginx-unprivileged, which is pre-configured to write to accessible directories, ensuring compliance with the security policy.
 
-### \#Issue 4: Cluster rebuild: destroy & apply
+\#Issue 4: Cluster rebuild: destroy & apply
 
 Symptoms: After rebuilding the cluster, several Kustomizations (external-secrets, vault, monitoring) tried to reconcile at the same time.   
 Vault-0 was missing because its Kustomization was failing a "Dry-Run" check, even though the External Secrets Operator pods were technically "Running."
@@ -158,7 +158,7 @@ Root Cause: In a Kind (Kubernetes-in-Docker) environment on a VM, the External S
 
 Resolution: Implemented a Tiered Dependency Tree using dependsOn in the Flux Kustomization specs. This forced Flux to wait until the Operator was 100% healthy before even attempting to deploy Vault.
 
-### \#Issue 5: Webhook deadline exceeded (again, tried to fix timeouts)
+\#Issue 5: Webhook deadline exceeded (again, tried to fix timeouts)
 
 Symptoms: Even with dependencies, the webhook continued to time out with context deadline exceeded.  
 Manual kubectl patch commands failed because the webhook configuration names differed from the standard documentation.
@@ -168,13 +168,13 @@ Root Cause: The latency in Kind's internal networking (bridging between the Mast
 Resolution: First identified the specific validators: externalsecret-validate and secretstore-validate. Second, attempted to increase the timeoutSeconds to 30s.  
 Third, for the sake of the lab environment, we eventually disabled the webhook creation in the HelmRelease values (webhook.create: false) to bypass the "gatekeeper" entirely and allow the Vault pod to spawn.
 
-### \#Issue 6: Missing File & Schema Validation Errors
+\#Issue 6: Missing File & Schema Validation Errors
 
 Symptoms: Moving vault.yaml to a subfolder caused the infrastructure-monitoring Kustomization to crash with a "no such file or directory" error.
 
 Resolution: The file path error was a side effect of reorganizing the repo into a cleaner structure without updating the parent Kustomization.
 
-### \#Issue 7: Vault KV-V2 Path Mismatch
+\#Issue 7: Vault KV-V2 Path Mismatch
 
 Symptoms: The ExternalSecret reported SecretSyncError even after Vault was running.  
 Events showed error processing spec.data\[0\]... ClusterSecretStore "vault-backend" is not ready.
@@ -187,7 +187,7 @@ Resolution: Manually entered the vault-0 pod to:
    2. Configure the webapp-role bound to the external-secrets ServiceAccount.  
    3. Define a webapp-policy with read capabilities on the secret/data/\* path.
 
-### \#Issue 8: Helm Controller Cache Sync
+\#Issue 8: Helm Controller Cache Sync
 
 Symptoms: kube-prometheus-stack reported secrets "grafana-admin-credentials" not found even after the secret was created. The Monitoring stack remained in a "False" state.
 
@@ -216,4 +216,4 @@ kubectl logs \-l app.kubernetes.io/name=alloy \-n flux-system
 \# Verify Autoscaling   
 kubectl get hpa \-A
 
-[View Validation Report](./docs/validation/cluster_report.pdf)
+[View Validation Report](./docs/validation/DevOps_TaskValidationSnapshots.pdf)
