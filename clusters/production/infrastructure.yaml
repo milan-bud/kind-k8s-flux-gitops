@@ -21,7 +21,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: external-secrets-operator
+    - name: external-secrets
   interval: 1h
   path: ./infrastructure
   prune: true
