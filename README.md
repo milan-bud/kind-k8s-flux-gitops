@@ -23,8 +23,7 @@ Repository contains both the Infrastructure-as-Code (Terraform) and the Kubernet
 │   ├── base/              \# Deployment, Service, HPA, NetworkPolicy  
 │   └── overlays/          \# Environment specifics (Prod/Test)  
 ├── clusters/              \# Flux Cluster definitions  
-├── docs/                  \# 
-│   └── validation/        \# Validation snapshots   
+├── docs/                  \# README.md, validation snapshots PDF
 ├── infrastructure/        \# Core Infra (Vault, ESO, Monitoring)  
 │   ├── monitoring/        \# Prometheus, Loki, Alloy, Grafana, Metrics Server  
 │   ├── operator/        \# ESO  
