@@ -25,6 +25,8 @@ spec:
   dependsOn:
     - name: external-secrets
   interval: 1h
+  timeout: 5m 
+  retryInterval: 2m
   path: ./infrastructure/vault
   prune: true
   wait: true 
