@@ -18,19 +18,22 @@ About: A comprehensive Kubernetes environment demonstrating a GitOps operating m
 
 Repository contains both the Infrastructure-as-Code (Terraform) and the Kubernetes Configuration (Flux).
 
+
+```text
 .
 ├── apps/                  # Application workloads (Base & Overlays)
 │   ├── base/              # Deployment, Service, HPA, NetworkPolicy
 │   └── overlays/          # Environment specifics (Prod/Test)
-├── clusters/              # Flux Cluster definitions & sync settings
-├── docs/                  # Documentation & Project Evidence
-│   └── validation/        # PDF reports and system screenshots
+├── clusters/              # Flux Cluster definitions
+├── docs/                  # Project documentation
+│   └── validation/        # Validation report PDF and screenshots
 ├── infrastructure/        # Core Infra (Vault, ESO, Monitoring)
 │   ├── monitoring/        # Prometheus, Loki, Alloy, Grafana, Metrics Server
 │   ├── operator/          # External Secrets Operator (ESO)
-│   └── vault/             # HashiCorp Vault & SecretStore bridges
+│   └── vault/             # Vault, Vault bridge
 ├── terraform/             # Terraform Bootstrap Scripts
-└── README.md              # Root project documentation
+└── README.md              # Root path
+
 
 \---
 
