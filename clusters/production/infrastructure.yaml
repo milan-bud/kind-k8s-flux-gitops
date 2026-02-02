@@ -21,6 +21,7 @@ metadata:
   name: infrastructure-vault
   namespace: flux-system
 spec:
+  force: true
   dependsOn:
     - name: external-secrets
   interval: 1h
@@ -38,6 +39,7 @@ metadata:
   name: infrastructure-monitoring
   namespace: flux-system
 spec:
+  force: true
   dependsOn:
     - name: external-secrets
   interval: 1h
