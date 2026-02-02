@@ -1,33 +1,30 @@
-# Block 1: The Operator
+---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: external-secrets
+  name: external-secrets-operator
   namespace: flux-system
 spec:
+  interval: 1h
+  path: ./infrastructure/operator 
+  prune: true
+  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vault-and-monitoring
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: external-secrets-operator
   interval: 1h
   path: ./infrastructure
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  wait: true
-
----
-# Block 2: The Rest of the Infrastructure (including Monitoring)
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infrastructure-monitoring
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: external-secrets # step 1 to finish first
-  interval: 1h
-  path: ./infrastructure/monitoring
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  retryInterval: 1m
-  timeout: 5m
