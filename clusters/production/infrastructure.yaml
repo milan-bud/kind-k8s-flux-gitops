@@ -24,6 +24,7 @@ spec:
   force: true
   dependsOn:
     - name: external-secrets
+  validation: none
   interval: 1h
   timeout: 5m 
   retryInterval: 2m
@@ -44,6 +45,7 @@ spec:
   force: true
   dependsOn:
     - name: external-secrets
+  validation: none
   interval: 1h
   path: ./infrastructure
   prune: true
