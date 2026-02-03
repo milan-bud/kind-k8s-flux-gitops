@@ -19,6 +19,7 @@ About: A comprehensive Kubernetes environment demonstrating a GitOps operating m
 Repository contains both the Infrastructure-as-Code (Terraform) and the Kubernetes Configuration (Flux).
 
 
+```text
 .
 ├── apps/                  # Application workloads (Base & Overlays)
 │   ├── base/              # Deployment, Service, HPA, NetworkPolicy
@@ -32,6 +33,7 @@ Repository contains both the Infrastructure-as-Code (Terraform) and the Kubernet
 │   └── vault/             # Vault, Vault bridge
 ├── terraform/             # Terraform Bootstrap Scripts
 └── README.md              # Root path
+```
 
 
 \---
