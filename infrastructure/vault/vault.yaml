@@ -16,4 +16,3 @@ spec:
     server:
       dev:
         enabled: true
-        devRootToken: "root"
